@@ -1,0 +1,7 @@
+.dockerignore
+.git
+build/
+.packages
+.pub/
+node_modules/
+myminipod_client/
