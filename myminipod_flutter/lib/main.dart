@@ -8,8 +8,7 @@ import 'package:serverpod_flutter/serverpod_flutter.dart';
 // the default port. You will need to modify this to connect to staging or
 // production servers.
 // var client = Client('http://$localhost:8080/')
-var client = Client(
-    'https://serverpodmini-rkjhftszb-emil-akermans-projects.vercel.app:443/')
+var client = Client('https://serverpodminiapi.onrender.com/')
   ..connectivityMonitor = FlutterConnectivityMonitor();
 
 void main() {
@@ -106,7 +105,10 @@ class MyHomePageState extends State<MyHomePage> {
                     onPressed: _callHello,
                     child: const Text('Send to Server'),
                   ),
-                  ElevatedButton(onPressed: _callHello2, child: Text("Clicky")),
+                  ElevatedButton(
+                    onPressed: _callHello2,
+                    child: const Text("Print hello on screen"),
+                  ),
                 ],
               ),
             ),
