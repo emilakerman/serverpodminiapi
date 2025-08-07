@@ -32,7 +32,7 @@ class PaymentEndpoint extends Endpoint {
         return response.data["client_secret"];
       }
     } catch (e) {
-      print("$e");
+      session.log("Could not create payment intent. $e");
       return null;
     }
     return null;
