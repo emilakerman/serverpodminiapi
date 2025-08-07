@@ -33,6 +33,7 @@ class PaymentEndpoint extends Endpoint {
       }
     } catch (e) {
       print("$e");
+      return null;
     }
     return null;
   }
