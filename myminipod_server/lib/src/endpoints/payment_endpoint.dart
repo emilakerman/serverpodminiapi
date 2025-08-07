@@ -1,9 +1,13 @@
 import 'package:dio/dio.dart';
+import 'package:myminipod_server/common/constants/stripe_constants.dart';
 import 'package:serverpod/serverpod.dart';
 
 class PaymentEndpoint extends Endpoint {
   Future<String?> createPaymentIntent(
-      Session session, int amount, String currency) async {
+    Session session,
+    int amount,
+    String currency,
+  ) async {
     // Conversion from lowest currency denominator such as CENT or ÖRE.
     // To its bigger equivalent such as USD or SEK.
     final int convertedAmount = (amount * 100);
@@ -32,9 +36,4 @@ class PaymentEndpoint extends Endpoint {
     }
     return null;
   }
-}
-
-class StripeConstants {
-  static const String stripePublishableKey = "";
-  static const String stripeSecretKey = "";
 }
