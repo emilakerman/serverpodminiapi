@@ -1,1 +1,2 @@
 .vercel
+myminipod_server/lib/common/constants/stripe_constants.dart
