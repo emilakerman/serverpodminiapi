@@ -1,3 +1,2 @@
-example:
-  - hello:
-  - hello2:
+payment:
+  - createPaymentIntent:

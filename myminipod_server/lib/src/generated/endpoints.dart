@@ -16,44 +16,41 @@ class Endpoints extends _i1.EndpointDispatch {
   @override
   void initializeEndpoints(_i1.Server server) {
     var endpoints = <String, _i1.Endpoint>{
-      'example': _i2.ExampleEndpoint()
+      'payment': _i2.PaymentEndpoint()
         ..initialize(
           server,
-          'example',
+          'payment',
           null,
         )
     };
-    connectors['example'] = _i1.EndpointConnector(
-      name: 'example',
-      endpoint: endpoints['example']!,
+    connectors['payment'] = _i1.EndpointConnector(
+      name: 'payment',
+      endpoint: endpoints['payment']!,
       methodConnectors: {
-        'hello': _i1.MethodConnector(
-          name: 'hello',
+        'createPaymentIntent': _i1.MethodConnector(
+          name: 'createPaymentIntent',
           params: {
-            'name': _i1.ParameterDescription(
-              name: 'name',
+            'amount': _i1.ParameterDescription(
+              name: 'amount',
+              type: _i1.getType<int>(),
+              nullable: false,
+            ),
+            'currency': _i1.ParameterDescription(
+              name: 'currency',
               type: _i1.getType<String>(),
               nullable: false,
-            )
+            ),
           },
           call: (
             _i1.Session session,
             Map<String, dynamic> params,
           ) async =>
-              (endpoints['example'] as _i2.ExampleEndpoint).hello(
+              (endpoints['payment'] as _i2.PaymentEndpoint).createPaymentIntent(
             session,
-            params['name'],
+            params['amount'],
+            params['currency'],
           ),
-        ),
-        'hello2': _i1.MethodConnector(
-          name: 'hello2',
-          params: {},
-          call: (
-            _i1.Session session,
-            Map<String, dynamic> params,
-          ) async =>
-              (endpoints['example'] as _i2.ExampleEndpoint).hello2(session),
-        ),
+        )
       },
     );
   }

@@ -14,22 +14,23 @@ import 'dart:async' as _i2;
 import 'protocol.dart' as _i3;
 
 /// {@category Endpoint}
-class EndpointExample extends _i1.EndpointRef {
-  EndpointExample(_i1.EndpointCaller caller) : super(caller);
+class EndpointPayment extends _i1.EndpointRef {
+  EndpointPayment(_i1.EndpointCaller caller) : super(caller);
 
   @override
-  String get name => 'example';
+  String get name => 'payment';
 
-  _i2.Future<String> hello(String name) => caller.callServerEndpoint<String>(
-        'example',
-        'hello',
-        {'name': name},
-      );
-
-  _i2.Future<String> hello2() => caller.callServerEndpoint<String>(
-        'example',
-        'hello2',
-        {},
+  _i2.Future<String?> createPaymentIntent(
+    int amount,
+    String currency,
+  ) =>
+      caller.callServerEndpoint<String?>(
+        'payment',
+        'createPaymentIntent',
+        {
+          'amount': amount,
+          'currency': currency,
+        },
       );
 }
 
@@ -59,13 +60,13 @@ class Client extends _i1.ServerpodClientShared {
           disconnectStreamsOnLostInternetConnection:
               disconnectStreamsOnLostInternetConnection,
         ) {
-    example = EndpointExample(this);
+    payment = EndpointPayment(this);
   }
 
-  late final EndpointExample example;
+  late final EndpointPayment payment;
 
   @override
-  Map<String, _i1.EndpointRef> get endpointRefLookup => {'example': example};
+  Map<String, _i1.EndpointRef> get endpointRefLookup => {'payment': payment};
 
   @override
   Map<String, _i1.ModuleEndpointCaller> get moduleLookup => {};
