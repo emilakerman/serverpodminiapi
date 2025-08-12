@@ -8,8 +8,9 @@ class PaymentEndpoint extends Endpoint {
     int amount,
     String currency,
   ) async {
-    // Conversion from lowest currency denominator such as CENT or ÖRE.
-    // To its bigger equivalent such as USD or SEK.
+    // Conversion to lowest currency denominator such as CENT or ÖRE.
+    // From its bigger equivalent such as USD or SEK.
+    // Stripe likes CENT/ÖRE, the end user does not.
     final int convertedAmount = (amount * 100);
     try {
       final Dio dio = Dio();
